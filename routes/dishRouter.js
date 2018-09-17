@@ -42,7 +42,6 @@ dishRouter.route('/')
         .then((resp)=>{
             res.statusCode = 200;
             res.setHeader('Content-Type','application/json');
-            
             res.json(resp);
         },(err)=>{
             next(err);
@@ -57,7 +56,6 @@ dishRouter.route('/:dishId')
         .then((dish)=>{
             res.statusCode = 200;
             res.setHeader('Content-Type','application/json');
-            console.log('dish created'+ dish);
             res.json(dish);
         },(err)=>{
             next(err);
@@ -79,7 +77,6 @@ dishRouter.route('/:dishId')
         .then((dish)=>{
             res.statusCode = 200;
             res.setHeader('Content-Type','application/json');
-            console.log('dish created'+ dish);
             res.json(dish);
         },(err)=>{
             next(err);
