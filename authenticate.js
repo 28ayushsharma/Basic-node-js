@@ -26,6 +26,7 @@ exports.jwtPassport = passport.use(new JwtStrategy(opts,
         console.log("jwt payload "+jwt_payload);
         User.findOne({_id:jwt_payload._id}, (err,user) => {
             if(err){
+                console.log("verify user called");
                 return done(err, false);
             }
             else if(user){
@@ -36,5 +37,15 @@ exports.jwtPassport = passport.use(new JwtStrategy(opts,
             }
         })
     }));
+
+exports.verifyAdmin = function (req, res, next){
+    if(req.user.admin){
+        next();
+    }else{
+        var err = new Error('You are not authorized!');
+        err.status = 403;
+        return next(err);
+    }
+};
 
 exports.verifyUser = passport.authenticate('jwt', { session : false });
